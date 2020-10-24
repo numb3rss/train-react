@@ -1,43 +1,66 @@
 import React, {Component} from 'react';
 import './App.scss';
-import Display from "./Display.Component";
-import Counter from './Counter.Component';
+import Cards from "./Cards.Component";
+import Form from "./Form.Component";
+import {inject, injectable} from "inversify";
+import SERVICE_IDENTIFIER from "./constants/identifiers";
+import {IPersonService} from "./Person.Service";
+import {connect} from "react-inversify";
+
+type OwnProps = {
+    title: string
+}
 
 type Props = {
+    title: string,
+    personService: IPersonService
+}
+
+@injectable()
+class Dependencies {
+    public personService: IPersonService;
     
+    constructor(
+        @inject(SERVICE_IDENTIFIER.PERSONSERVICE) personService: IPersonService
+    ) {
+        this.personService = personService;
+    }
 }
 
 type State = {
-    count: number
+    persons: any[]
 }
 
-class App extends Component<Props, State>{
+class App extends Component<Props, State> {
     constructor(props: any) {
         super(props);
         this.state = {
-            count: 0
-        };
+            persons: this.props.personService.getPersons()
+        }
+    }
+    
+    addedPerson = () => {
+        this.setState({
+            persons: this.props.personService.getPersons()
+        });
     }
     
     render() {
-        const displayComponent = (message: number) => <Display message={message}/>
-        const updateCounter = (value: number) => {
-            this.setState({
-                count: this.state.count + value
-            })
-        };
-        const counterComponent = (incrementValue: number) => <Counter updateCounter={updateCounter} incrementValue={incrementValue}/>
-
         return (
             <div>
-                {counterComponent(1)}
-                {counterComponent(5)}
-                {counterComponent(10)}
-                {displayComponent(this.state.count)}
+                <div className="header">{this.props.title}</div>
+                <Cards persons={this.state.persons}/>
+                <Form addedPerson={this.addedPerson}/>
             </div>
         );
     }
 }
 
-export default App;
+export default connect(Dependencies, (deps, ownProps: OwnProps) => {
+    return {
+        title: ownProps.title,
+        personService: deps.personService
+    };
+})(App);
+
  
