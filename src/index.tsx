@@ -3,10 +3,16 @@ import ReactDOM from 'react-dom';
 import './index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import container from './config/ioc-config';
+import { Provider, ChangeNotification } from 'react-inversify';
+
+const changeNotification = new ChangeNotification();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <Provider container={container} changeNotification={changeNotification}>
+        <App title="The GitHub Cards App"/>
+      </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
