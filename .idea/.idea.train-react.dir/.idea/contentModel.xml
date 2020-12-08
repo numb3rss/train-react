@@ -36,6 +36,7 @@
       <e p="node_modules/acorn" t="IncludeRecursive" />
       <e p="node_modules/aggregate-error" t="IncludeRecursive" />
       <e p="node_modules/ansi-regex" t="IncludeRecursive" />
+      <e p="node_modules/axios" t="IncludeRecursive" />
       <e p="node_modules/babel-plugin-parameter-decorator" t="IncludeRecursive" />
       <e p="node_modules/camelcase" t="IncludeRecursive" />
       <e p="node_modules/chalk" t="IncludeRecursive" />

@@ -1,18 +1,18 @@
 export class Person {
-    private readonly firstName: string;
-    private readonly lastName: string;
+    private readonly id: number;
+    private readonly name: string;
     private readonly company: string;
     private readonly avatarUrl: string;
     
-    constructor(firstName: string, lastName: string, company: string, avatarUrl: string) {
-        this.firstName = firstName;
-        this.lastName = lastName;
+    constructor(id: number, name: string, company: string, avatarUrl: string) {
+        this.id = id;
+        this.name = name;
         this.company = company;
         this.avatarUrl = avatarUrl;
     }
     
     getName() {
-        return `${this.firstName} ${this.lastName}`;
+        return this.name;
     }
     
     getCompany() {
@@ -21,5 +21,9 @@ export class Person {
 
     getAvatarUrl() {
         return this.avatarUrl;
+    }
+
+    getId() {
+        return this.id;
     }
 }
