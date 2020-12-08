@@ -1,5 +1,9 @@
 const SERVICE_IDENTIFIER = {
-    PERSONSERVICE: Symbol.for("PersonService")
+    PERSONSERVICE: Symbol.for("PersonService"),
 }
 
-export default SERVICE_IDENTIFIER;
+const USECASE_IDENTIFIER = {
+    ADDAPERSONUSECASE: Symbol.for("AddAPersonUseCase")
+}
+
+export {SERVICE_IDENTIFIER, USECASE_IDENTIFIER};

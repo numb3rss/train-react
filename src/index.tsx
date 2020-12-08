@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.scss';
-import App from './App';
+import App from './ui/App';
 import * as serviceWorker from './serviceWorker';
 import container from './config/ioc-config';
 import { Provider, ChangeNotification } from 'react-inversify';
